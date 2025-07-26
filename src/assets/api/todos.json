@@ -1,0 +1,242 @@
+[
+  {
+    "id": 1,
+    "title": "Buy eggs",
+    "description": "Buy eggs - auto-generated task",
+    "dueDate": "2025-07-07",
+    "isDone": false,
+    "categoryId": 3
+  },
+  {
+    "id": 2,
+    "title": "Run 10km",
+    "description": "Run 10km - auto-generated task",
+    "dueDate": "2025-07-06",
+    "isDone": false,
+    "categoryId": 4
+  },
+  {
+    "id": 3,
+    "title": "Study NgRx",
+    "description": "Study NgRx - auto-generated task",
+    "dueDate": "2025-07-03",
+    "isDone": true,
+    "categoryId": 8
+  },
+  {
+    "id": 4,
+    "title": "Implement IonLoading",
+    "description": "Implement IonLoading - auto-generated task",
+    "dueDate": "2025-06-29",
+    "isDone": false,
+    "categoryId": 10
+  },
+  {
+    "id": 5,
+    "title": "Buy Clothes",
+    "description": "Buy Clothes - auto-generated task",
+    "dueDate": "2025-07-02",
+    "isDone": false,
+    "categoryId": 3
+  },
+  {
+    "id": 6,
+    "title": "Fix bike tire",
+    "description": "Fix bike tire - auto-generated task",
+    "dueDate": "2025-07-04",
+    "isDone": false,
+    "categoryId": 7
+  },
+  {
+    "id": 7,
+    "title": "Call mom",
+    "description": "Call mom - auto-generated task",
+    "dueDate": "2025-07-08",
+    "isDone": false,
+    "categoryId": 2
+  },
+  {
+    "id": 8,
+    "title": "Submit tax form",
+    "description": "Submit tax form - auto-generated task",
+    "dueDate": "2025-06-30",
+    "isDone": false,
+    "categoryId": 5
+  },
+  {
+    "id": 9,
+    "title": "Clean kitchen",
+    "description": "Clean kitchen - auto-generated task",
+    "dueDate": "2025-07-07",
+    "isDone": false,
+    "categoryId": 7
+  },
+  {
+    "id": 10,
+    "title": "Write blog post",
+    "description": "Write blog post - auto-generated task",
+    "dueDate": "2025-07-03",
+    "isDone": true,
+    "categoryId": 18
+  },
+  {
+    "id": 11,
+    "title": "Read design patterns",
+    "description": "Read design patterns - auto-generated task",
+    "dueDate": "2025-06-29",
+    "isDone": false,
+    "categoryId": 8
+  },
+  {
+    "id": 12,
+    "title": "Learn Docker",
+    "description": "Learn Docker - auto-generated task",
+    "dueDate": "2025-06-29",
+    "isDone": false,
+    "categoryId": 8
+  },
+  {
+    "id": 13,
+    "title": "Practice piano",
+    "description": "Practice piano - auto-generated task",
+    "dueDate": "2025-06-30",
+    "isDone": false,
+    "categoryId": 18
+  },
+  {
+    "id": 14,
+    "title": "Organize bookshelf",
+    "description": "Organize bookshelf - auto-generated task",
+    "dueDate": "2025-07-05",
+    "isDone": true,
+    "categoryId": 17
+  },
+  {
+    "id": 15,
+    "title": "Refactor login page",
+    "description": "Refactor login page - auto-generated task",
+    "dueDate": "2025-07-10",
+    "isDone": true,
+    "categoryId": 1
+  },
+  {
+    "id": 16,
+    "title": "Update resume",
+    "description": "Update resume - auto-generated task",
+    "dueDate": "2025-07-06",
+    "isDone": false,
+    "categoryId": 5
+  },
+  {
+    "id": 17,
+    "title": "Grocery shopping",
+    "description": "Grocery shopping - auto-generated task",
+    "dueDate": "2025-07-04",
+    "isDone": true,
+    "categoryId": 3
+  },
+  {
+    "id": 18,
+    "title": "Water plants",
+    "description": "Water plants - auto-generated task",
+    "dueDate": "2025-07-06",
+    "isDone": true,
+    "categoryId": 20
+  },
+  {
+    "id": 19,
+    "title": "Review PRs",
+    "description": "Review PRs - auto-generated task",
+    "dueDate": "2025-07-01",
+    "isDone": false,
+    "categoryId": 1
+  },
+  {
+    "id": 20,
+    "title": "Plan trip to Kyoto",
+    "description": "Plan trip to Kyoto - auto-generated task",
+    "dueDate": "2025-07-01",
+    "isDone": true,
+    "categoryId": 6
+  },
+  {
+    "id": 21,
+    "title": "Clean inbox",
+    "description": "Clean inbox - auto-generated task",
+    "dueDate": "2025-07-08",
+    "isDone": false,
+    "categoryId": 25
+  },
+  {
+    "id": 22,
+    "title": "Meditate 15min",
+    "description": "Meditate 15min - auto-generated task",
+    "dueDate": "2025-07-06",
+    "isDone": false,
+    "categoryId": 4
+  },
+  {
+    "id": 23,
+    "title": "Try new recipe",
+    "description": "Try new recipe - auto-generated task",
+    "dueDate": "2025-07-12",
+    "isDone": false,
+    "categoryId": 21
+  },
+  {
+    "id": 24,
+    "title": "Do laundry",
+    "description": "Do laundry - auto-generated task",
+    "dueDate": "2025-07-01",
+    "isDone": false,
+    "categoryId": 19
+  },
+  {
+    "id": 25,
+    "title": "Fix broken light",
+    "description": "Fix broken light - auto-generated task",
+    "dueDate": "2025-07-03",
+    "isDone": false,
+    "categoryId": 7
+  },
+  {
+    "id": 26,
+    "title": "Send birthday gift",
+    "description": "Send birthday gift - auto-generated task",
+    "dueDate": "2025-07-03",
+    "isDone": true,
+    "categoryId": 2
+  },
+  {
+    "id": 27,
+    "title": "Schedule dentist",
+    "description": "Schedule dentist - auto-generated task",
+    "dueDate": "2025-07-09",
+    "isDone": false,
+    "categoryId": 2
+  },
+  {
+    "id": 28,
+    "title": "Backup hard drive",
+    "description": "Backup hard drive - auto-generated task",
+    "dueDate": "2025-06-28",
+    "isDone": false,
+    "categoryId": 22
+  },
+  {
+    "id": 29,
+    "title": "Walk 5km",
+    "description": "Walk 5km - auto-generated task",
+    "dueDate": "2025-06-29",
+    "isDone": false,
+    "categoryId": 4
+  },
+  {
+    "id": 30,
+    "title": "Deploy staging app",
+    "description": "Deploy staging app - auto-generated task",
+    "dueDate": "2025-07-04",
+    "isDone": false,
+    "categoryId": 1
+  }
+]

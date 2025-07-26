@@ -1,13 +1,26 @@
-import { Routes } from '@angular/router';
+import { Route } from '@angular/router';
 
-export const routes: Routes = [
-  {
-    path: 'home',
-    loadComponent: () => import('./home/home.page').then((m) => m.HomePage),
-  },
+export const appRoutes: Route[] = [
   {
     path: '',
-    redirectTo: 'home',
     pathMatch: 'full',
+    redirectTo: '/category-list',
+  },
+  {
+    path: 'category-list',
+    loadComponent: () =>
+      import('./pages/category-list/category-list').then(
+        (m) => m.CategoryListPage
+      ),
+  },
+  {
+    path: 'category/:categoryId/todos',
+    loadComponent: () =>
+      import('./pages/todo-list/todo-list').then((m) => m.TodoListPage),
+  },
+  {
+    path: 'todo-list',
+    loadComponent: () =>
+      import('./pages/todo-list/todo-list').then((m) => m.TodoListPage),
   },
 ];
