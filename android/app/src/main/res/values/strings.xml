@@ -1,0 +1,7 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+    <string name="app_name">todo-ngrx</string>
+    <string name="title_activity_main">todo-ngrx</string>
+    <string name="package_name">todo.ngrx</string>
+    <string name="custom_url_scheme">todo.ngrx</string>
+</resources>
