@@ -11,7 +11,7 @@
     "test": "ng test",
     "coverage": "ng test --no-watch --code-coverage",
     "lint": "ng lint",
-    "ionic:build": "npm run build",
+    "ionic:build": "npm run build && npx cap sync",
     "ionic:serve": "npm run start -- --open",
     "sync": "npx cap sync",
     "openios": "npx cap open ios"
