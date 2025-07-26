@@ -12,8 +12,7 @@ export const MockInterceptor: HttpInterceptorFn = (
   req: HttpRequest<unknown>,
   next: HttpHandlerFn
 ) => {
-  console.log(req);
-  if (!isDevMode()) return next(req);
+  // if (!isDevMode()) return next(req);
 
   const urlEnd = +req.url.split('/')[req.url.split('/').length - 1];
   const urlEndIsInteger = Number.isInteger(urlEnd);
