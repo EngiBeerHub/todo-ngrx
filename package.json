@@ -11,8 +11,10 @@
     "test": "ng test",
     "coverage": "ng test --no-watch --code-coverage",
     "lint": "ng lint",
-    "ionic:build": "npm run build && ionic cap sync",
-    "ionic:serve": "npm run start -- --open"
+    "ionic:build": "npm run build",
+    "ionic:serve": "npm run start -- --open",
+    "sync": "npx cap sync",
+    "openios": "npx cap open ios"
   },
   "private": true,
   "dependencies": {
