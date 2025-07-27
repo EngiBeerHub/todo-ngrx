@@ -79,7 +79,7 @@ export const CategoryListStore = signalStore(
 
     onCompleteClicked: () => patchState(store, {isDrafting: false}),
 
-    onCategorySelected: (categoryId: number) =>
+    onCategorySelected: async   (categoryId: number) =>
       void router.navigate(['/category', categoryId, 'todos']),
 
     onCategoryAdded: (category: CategoryModel) => {
