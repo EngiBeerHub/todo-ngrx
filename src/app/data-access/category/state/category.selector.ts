@@ -2,7 +2,7 @@ import { createFeatureSelector, createSelector } from '@ngrx/store';
 import { categoryFeatureKey } from './feature-key';
 import { categoryEntityAdapter } from './category.entity';
 import { selectRouteParams } from '../../router.selectors';
-import {CategoriesState} from "../../../../libs/data-access/todo";
+import { CategoriesState } from '../../../../libs/data-access/todo';
 
 export const selectCategoriesState =
   createFeatureSelector<CategoriesState>(categoryFeatureKey);
@@ -29,5 +29,9 @@ export const selectCategoryById = createSelector(
   selectAllCategories,
   selectRouteParams,
   (categories, params) =>
-    categories.find((category) => category.id === Number(params['categoryId']))
+    params
+      ? categories.find(
+          (category) => category.id === Number(params['categoryId'])
+        )
+      : undefined
 );
