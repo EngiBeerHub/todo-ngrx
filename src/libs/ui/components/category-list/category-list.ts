@@ -1,5 +1,5 @@
-import { Component, input, model, output } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import {Component, input, model, output} from '@angular/core';
+import {CommonModule} from '@angular/common';
 import {
   IonIcon,
   IonInput,
@@ -8,12 +8,12 @@ import {
   IonItemOptions,
   IonItemSliding,
   IonLabel,
-  IonList,
+  IonList
 } from '@ionic/angular/standalone';
-import { addIcons } from 'ionicons';
-import { trash } from 'ionicons/icons';
-import { sleep } from '../utils/sleep';
-import { FormsModule } from '@angular/forms';
+import {addIcons} from 'ionicons';
+import {trash} from 'ionicons/icons';
+import {sleep} from '../utils/sleep';
+import {FormsModule} from '@angular/forms';
 import {CategoryModel} from "../../../data-access/todo";
 
 @Component({
@@ -30,8 +30,41 @@ import {CategoryModel} from "../../../data-access/todo";
     IonInput,
     FormsModule,
   ],
-  templateUrl: './category-list.html',
-  styleUrl: './category-list.scss',
+  template: `
+    <ion-list [inset]="true">
+      @for (category of $categories(); track category.id) {
+        <ion-item-sliding #sliding>
+          <ion-item [button]="true" (click)="onCategorySelected(category.id)">
+            <ion-label>{{ category.title }}</ion-label>
+          </ion-item>
+
+          <ion-item-options slot="end">
+            <ion-item-option color="danger">
+              <ion-icon
+                slot="icon-only"
+                name="trash"
+                (click)="onCategoryDeleted(category, sliding)"
+              ></ion-icon>
+            </ion-item-option>
+          </ion-item-options>
+        </ion-item-sliding>
+      }
+
+      @if ($isDrafting()) {
+        <!-- add mode -->
+        <ion-item-sliding>
+          <ion-item>
+            <ion-input
+              autofocus="true"
+              [(ngModel)]="$newCategoryTitle"
+              (ionBlur)="onAddConfirmed()"></ion-input>
+          </ion-item>
+        </ion-item-sliding>
+      }
+    </ion-list>
+
+  `,
+  styles: ``,
 })
 export class CategoryListComponent {
   // input
