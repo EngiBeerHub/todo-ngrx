@@ -6,14 +6,14 @@ import {
   withHooks,
   withMethods,
   withProps,
-  withState,
+  withState
 } from '@ngrx/signals';
-import { computed, effect, inject, signal } from '@angular/core';
-import { TodoFacade } from '../../data-access/todo/facades/todo.facade';
-import { CategoryFacade } from '../../data-access/category/facades/category.facade';
-import { AlertController } from '@ionic/angular/standalone';
-import { RefresherCustomEvent } from '@ionic/angular';
-import { Location } from '@angular/common';
+import {computed, effect, inject, signal} from '@angular/core';
+import {TodoFacade} from '../../data-access/todo/facades/todo.facade';
+import {CategoryFacade} from '../../data-access/category/facades/category.facade';
+import {AlertController} from '@ionic/angular/standalone';
+import {RefresherCustomEvent} from '@ionic/angular';
+import {Location} from '@angular/common';
 import {TodoModel, TodosViewModel} from "../../../libs/data-access/todo";
 
 type TodoListPageState = {
@@ -27,14 +27,12 @@ const initialState: TodoListPageState = {
   todosViewModel: {
     category: null,
     showDoneTodos: false,
-    todos: [],
+    todos: []
   },
   isDrafting: false,
   isUpdating: false,
-  isOpenMenu: false,
+  isOpenMenu: false
 };
-
-const _refresherEvent = signal<RefresherCustomEvent | null>(null);
 
 export const TodoListStore = signalStore(
   // declare state
@@ -46,21 +44,22 @@ export const TodoListStore = signalStore(
     categoryFacade: inject(CategoryFacade),
     alertCtrl: inject(AlertController),
     location: inject(Location),
+    _refresherEvent: signal<RefresherCustomEvent | null>(null)
   })),
 
   // computed state
-  withComputed(({ todoFacade }) => ({
+  withComputed(({todoFacade, _refresherEvent}) => ({
     $showLoading: computed(
       () => todoFacade.$isLoading() && _refresherEvent() === null
-    ),
+    )
   })),
 
   // lifecycle method of store
-  withHooks(({ todoFacade, ...store }) => ({
+  withHooks(({todoFacade, _refresherEvent, ...store}) => ({
     onInit() {
       // extract a view model from facade
       effect(() =>
-        patchState(store, { todosViewModel: todoFacade.$todosViewModel() })
+        patchState(store, {todosViewModel: todoFacade.$todosViewModel()})
       );
 
       // complete refresh when complete fetch todos
@@ -75,32 +74,32 @@ export const TodoListStore = signalStore(
       watchState(store, (state) => {
         console.debug('[watchState] TodoListPageState', state);
       });
-    },
+    }
   })),
 
   // reducers and effects
   withMethods(
-    ({ todoFacade, categoryFacade, alertCtrl, location, ...store }) => ({
+    ({todoFacade, categoryFacade, alertCtrl, location, _refresherEvent, ...store}) => ({
       onRefreshed: (event: RefresherCustomEvent) => {
         _refresherEvent.set(event);
         todoFacade.fetchTodos();
       },
 
       onIsOpenMenuToggled: (value: boolean) =>
-        patchState(store, { isOpenMenu: value }),
+        patchState(store, {isOpenMenu: value}),
 
       onIsDraftingToggled: (value: boolean) =>
-        patchState(store, { isDrafting: value }),
+        patchState(store, {isDrafting: value}),
 
       onIsUpdatingToggled: (value: boolean) =>
-        patchState(store, { isUpdating: value }),
+        patchState(store, {isUpdating: value}),
 
       onCompleteClicked: () =>
-        patchState(store, { isDrafting: false, isUpdating: false }),
+        patchState(store, {isDrafting: false, isUpdating: false}),
 
       onTodoAdded: (todo: TodoModel) => {
         todoFacade.addTodo(todo);
-        patchState(store, { isDrafting: false });
+        patchState(store, {isDrafting: false});
       },
 
       onTodoUpdated: (todo: TodoModel) => todoFacade.updateTodo(todo),
@@ -110,12 +109,12 @@ export const TodoListStore = signalStore(
       onShowDoneTodosToggled: (value: boolean) =>
         categoryFacade.updateCategory({
           ...store.todosViewModel().category!,
-          showDoneTodos: value,
+          showDoneTodos: value
         }),
 
       onDeleteCategoryClicked: async () => {
         // close menu
-        patchState(store, { isOpenMenu: false });
+        patchState(store, {isOpenMenu: false});
 
         // show alert
         const alert = await alertCtrl.create({
@@ -125,7 +124,7 @@ export const TodoListStore = signalStore(
           message:
             'この操作によりこのリストにあるリマインダーがすべて削除されます。',
           buttons: [
-            { text: 'キャンセル', role: 'cancel' },
+            {text: 'キャンセル', role: 'cancel'},
             {
               text: '削除',
               role: 'destructive',
@@ -133,12 +132,12 @@ export const TodoListStore = signalStore(
                 location.back();
                 const category = store.todosViewModel().category;
                 if (category) categoryFacade.deleteCategory(category.id);
-              },
-            },
-          ],
+              }
+            }
+          ]
         });
         await alert.present();
-      },
+      }
     })
   )
 );

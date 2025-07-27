@@ -1,5 +1,5 @@
-import { computed, effect, inject, signal } from '@angular/core';
-import { RefresherCustomEvent } from '@ionic/angular';
+import {computed, effect, inject, signal} from '@angular/core';
+import {RefresherCustomEvent} from '@ionic/angular';
 import {
   patchState,
   signalStore,
@@ -8,10 +8,10 @@ import {
   withHooks,
   withMethods,
   withProps,
-  withState,
+  withState
 } from '@ngrx/signals';
-import { CategoryFacade } from '../../data-access/category/facades/category.facade';
-import { Router } from '@angular/router';
+import {CategoryFacade} from '../../data-access/category/facades/category.facade';
+import {Router} from '@angular/router';
 import {CategoryModel, CategoryViewModel} from "../../../libs/data-access/todo";
 
 type CategoryListState = {
@@ -21,12 +21,10 @@ type CategoryListState = {
 
 const initialState: CategoryListState = {
   categoriesViewModel: {
-    categories: [],
+    categories: []
   },
-  isDrafting: false,
+  isDrafting: false
 };
-
-const _refresherEvent = signal<RefresherCustomEvent | null>(null);
 
 export const CategoryListStore = signalStore(
   // declare state
@@ -36,21 +34,22 @@ export const CategoryListStore = signalStore(
   withProps(() => ({
     categoryFacade: inject(CategoryFacade),
     router: inject(Router),
+    _refresherEvent: signal<RefresherCustomEvent | null>(null)
   })),
 
   // computed state
-  withComputed(({ categoryFacade }) => ({
+  withComputed(({categoryFacade, _refresherEvent}) => ({
     $showLoading: computed(
       () => categoryFacade.$isLoading() && _refresherEvent() === null
-    ),
+    )
   })),
 
-  withHooks(({ categoryFacade, ...store }) => ({
+  withHooks(({categoryFacade, _refresherEvent, ...store}) => ({
     onInit() {
       // extract a view model from facade
       effect(() =>
         patchState(store, {
-          categoriesViewModel: categoryFacade.$categoriesViewModel(),
+          categoriesViewModel: categoryFacade.$categoriesViewModel()
         })
       );
 
@@ -66,29 +65,29 @@ export const CategoryListStore = signalStore(
       watchState(store, (state) => {
         console.debug('[watchState] CategoryListPageState', state);
       });
-    },
+    }
   })),
 
-  withMethods(({ categoryFacade, router, ...store }) => ({
+  withMethods(({categoryFacade, router, _refresherEvent, ...store}) => ({
     onRefreshed: (event: RefresherCustomEvent) => {
       _refresherEvent.set(event);
       categoryFacade.fetchCategories();
     },
 
     onIsDraftingToggled: (value: boolean) =>
-      patchState(store, { isDrafting: value }),
+      patchState(store, {isDrafting: value}),
 
-    onCompleteClicked: () => patchState(store, { isDrafting: false }),
+    onCompleteClicked: () => patchState(store, {isDrafting: false}),
 
     onCategorySelected: (categoryId: number) =>
       void router.navigate(['/category', categoryId, 'todos']),
 
     onCategoryAdded: (category: CategoryModel) => {
       categoryFacade.addCategory(category);
-      patchState(store, { isDrafting: false });
+      patchState(store, {isDrafting: false});
     },
 
     onCategoryDeleted: (category: CategoryModel) =>
-      categoryFacade.deleteCategory(category.id),
+      categoryFacade.deleteCategory(category.id)
   }))
 );
