@@ -4,12 +4,15 @@ import {ModelAdapter} from './model-adapter.interface';
 import {map, Observable} from 'rxjs';
 
 @Injectable({
-  providedIn: 'root',
+  providedIn: 'root'
 })
 export abstract class GenericHttpService<T, S> {
   protected url;
-  private readonly apiKey = '[MY_API_KEY}';
-  defaultHeaders = new HttpHeaders().set('apikey', this.apiKey).append('Authorization', `Bearer ${this.apiKey}`);
+  private readonly apiKey = '[MY_API_KEY]';
+  defaultHeaders = new HttpHeaders()
+    .set('apikey', this.apiKey)
+    .append('Authorization', `Bearer ${this.apiKey}`)
+    .append('Content-Type', 'application/json');
 
   protected readonly httpClient = inject(HttpClient);
 
@@ -65,12 +68,13 @@ export abstract class GenericHttpService<T, S> {
   }
 
   public put(
+    id: number | string,
     body: S,
     extraHttpRequestParams?: Partial<HttpHeaders>
   ): Observable<S> {
     return this.httpClient
       .put(
-        `${this.url}`,
+        `${this.url}?id=eq.${id}`,
         this.adapter.toDto(body),
         this.prepareRequestOptions(extraHttpRequestParams)
       )
@@ -100,7 +104,7 @@ export abstract class GenericHttpService<T, S> {
   ): Observable<S> {
     return this.httpClient
       .delete(
-        `${this.url}/${id}`,
+        `${this.url}?id=eq.${id}`,
         this.prepareRequestOptions(extraHttpRequestParams)
       )
       .pipe(

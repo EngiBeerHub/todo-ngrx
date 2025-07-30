@@ -1,9 +1,9 @@
-import { inject, Injectable } from '@angular/core';
-import { Actions, createEffect, ofType } from '@ngrx/effects';
-import { Store } from '@ngrx/store';
-import { toSignal } from '@angular/core/rxjs-interop';
-import { CategoryActions, CategorySelectors } from './index';
-import { catchError, concatMap, map, of, switchMap } from 'rxjs';
+import {inject, Injectable} from '@angular/core';
+import {Actions, createEffect, ofType} from '@ngrx/effects';
+import {Store} from '@ngrx/store';
+import {toSignal} from '@angular/core/rxjs-interop';
+import {CategoryActions, CategorySelectors} from './index';
+import {catchError, concatMap, map, of, switchMap} from 'rxjs';
 import {CategoryHttpService, CategoryModel} from "../../../../libs/data-access/todo";
 
 @Injectable({
@@ -79,7 +79,7 @@ export class CategoryEffects {
     this.actions.pipe(
       ofType(CategoryActions.updateCategory.type),
       concatMap(({ category }) =>
-        this.categoryApi.put(category).pipe(
+        this.categoryApi.put(category.id, category).pipe(
           map((category: CategoryModel) =>
             CategoryActions.updateCategorySuccess({ category })
           ),

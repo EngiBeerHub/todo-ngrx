@@ -1,9 +1,9 @@
-import { inject, Injectable } from '@angular/core';
-import { Actions, createEffect, ofType } from '@ngrx/effects';
-import { Store } from '@ngrx/store';
-import { toSignal } from '@angular/core/rxjs-interop';
-import { TodoActions, TodoSelectors } from './index';
-import { catchError, concatMap, map, of, switchMap } from 'rxjs';
+import {inject, Injectable} from '@angular/core';
+import {Actions, createEffect, ofType} from '@ngrx/effects';
+import {Store} from '@ngrx/store';
+import {toSignal} from '@angular/core/rxjs-interop';
+import {TodoActions, TodoSelectors} from './index';
+import {catchError, concatMap, map, of, switchMap} from 'rxjs';
 import {TodoHttpService, TodoModel} from "../../../../libs/data-access/todo";
 
 @Injectable({
@@ -73,7 +73,7 @@ export class TodoEffects {
     this.actions.pipe(
       ofType(TodoActions.updateTodo.type),
       concatMap(({ todo }) =>
-        this.todoApi.put(todo).pipe(
+        this.todoApi.put(todo.id, todo).pipe(
           map((todo: TodoModel) => TodoActions.updateTodoSuccess({ todo })),
           catchError(() => of(TodoActions.updateTodoFailed()))
         )
