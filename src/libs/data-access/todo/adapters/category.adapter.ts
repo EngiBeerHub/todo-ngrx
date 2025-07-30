@@ -1,4 +1,4 @@
-import { CategoryDto, CategoryModel } from '../model/category.interfaces';
+import {CategoryDto, CategoryModel} from '../model/category.interfaces';
 import {ModelAdapter} from "../../generic-http";
 
 export class CategoryAdapter
@@ -9,7 +9,7 @@ export class CategoryAdapter
       id: dto.id,
       title: dto.title,
       description: dto.description,
-      showDoneTodos: dto.showDoneTodos,
+      showDoneTodos: dto.show_done_todos,
     };
   }
 
@@ -18,7 +18,7 @@ export class CategoryAdapter
       id: model.id,
       title: model.title,
       description: model.description,
-      showDoneTodos: model.showDoneTodos,
+      show_done_todos: model.showDoneTodos,
     };
   }
 }

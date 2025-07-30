@@ -1,6 +1,6 @@
-import { Injectable } from '@angular/core';
-import { CategoryDto, CategoryModel } from '../model/category.interfaces';
-import { CategoryAdapter } from '../adapters/category.adapter';
+import {Injectable} from '@angular/core';
+import {CategoryDto, CategoryModel} from '../model/category.interfaces';
+import {CategoryAdapter} from '../adapters/category.adapter';
 import {GenericHttpService} from "../../generic-http";
 
 @Injectable({
@@ -11,6 +11,6 @@ export class CategoryHttpService extends GenericHttpService<
   CategoryModel
 > {
   constructor() {
-    super('/categories', '', new CategoryAdapter());
+    super('/category', 'https://oxgloygylxcnvxjcoocg.supabase.co/rest/v1', new CategoryAdapter());
   }
 }

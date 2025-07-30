@@ -1,14 +1,15 @@
-import { inject, Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { ModelAdapter } from './model-adapter.interface';
-import { map, Observable } from 'rxjs';
+import {inject, Injectable} from '@angular/core';
+import {HttpClient, HttpHeaders} from '@angular/common/http';
+import {ModelAdapter} from './model-adapter.interface';
+import {map, Observable} from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
 })
 export abstract class GenericHttpService<T, S> {
   protected url;
-  defaultHeaders = new HttpHeaders();
+  private readonly apiKey = '[MY_API_KEY}';
+  defaultHeaders = new HttpHeaders().set('apikey', this.apiKey).append('Authorization', `Bearer ${this.apiKey}`);
 
   protected readonly httpClient = inject(HttpClient);
 
@@ -20,7 +21,7 @@ export abstract class GenericHttpService<T, S> {
     // eslint-disable-next-line @angular-eslint/prefer-inject
     private adapter: ModelAdapter<T, S>
   ) {
-    this.url = this.baseUrl + '/api' + this.endpoint;
+    this.url = this.baseUrl + this.endpoint;
   }
 
   public get(extraHttpRequestParams?: Partial<HttpHeaders>): Observable<S[]> {

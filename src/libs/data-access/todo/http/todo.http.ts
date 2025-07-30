@@ -1,6 +1,6 @@
-import { Injectable } from '@angular/core';
-import { TodoDto, TodoModel } from '../model/todo.interfaces';
-import { TodoAdapter } from '../adapters/todo.adapter';
+import {Injectable} from '@angular/core';
+import {TodoDto, TodoModel} from '../model/todo.interfaces';
+import {TodoAdapter} from '../adapters/todo.adapter';
 import {GenericHttpService} from "../../generic-http";
 
 @Injectable({
@@ -8,6 +8,6 @@ import {GenericHttpService} from "../../generic-http";
 })
 export class TodoHttpService extends GenericHttpService<TodoDto, TodoModel> {
   constructor() {
-    super('/todos', '', new TodoAdapter());
+    super('/todo', 'https://oxgloygylxcnvxjcoocg.supabase.co/rest/v1', new TodoAdapter());
   }
 }

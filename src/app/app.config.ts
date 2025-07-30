@@ -1,17 +1,16 @@
-import { ApplicationConfig, provideZoneChangeDetection } from '@angular/core';
-import { provideRouter } from '@angular/router';
-import { appRoutes } from './app.routes';
-import { provideIonicAngular } from '@ionic/angular/standalone';
-import { provideState, provideStore } from '@ngrx/store';
-import { TodoEffects, todoReducer } from './data-access/todo/state';
-import { provideEffects } from '@ngrx/effects';
-import { provideHttpClient, withInterceptors } from '@angular/common/http';
-import { provideStoreDevtools } from '@ngrx/store-devtools';
-import { todoFeatureKey } from './data-access/todo/state/feature-key';
-import { CategoryEffects, categoryReducer } from './data-access/category/state';
-import { categoryFeatureKey } from './data-access/category/state/feature-key';
-import { provideRouterStore, routerReducer } from '@ngrx/router-store';
-import {MockInterceptor} from "../libs/data-access/generic-http";
+import {ApplicationConfig, provideZoneChangeDetection} from '@angular/core';
+import {provideRouter} from '@angular/router';
+import {appRoutes} from './app.routes';
+import {provideIonicAngular} from '@ionic/angular/standalone';
+import {provideState, provideStore} from '@ngrx/store';
+import {TodoEffects, todoReducer} from './data-access/todo/state';
+import {provideEffects} from '@ngrx/effects';
+import {provideHttpClient} from '@angular/common/http';
+import {provideStoreDevtools} from '@ngrx/store-devtools';
+import {todoFeatureKey} from './data-access/todo/state/feature-key';
+import {CategoryEffects, categoryReducer} from './data-access/category/state';
+import {categoryFeatureKey} from './data-access/category/state/feature-key';
+import {provideRouterStore, routerReducer} from '@ngrx/router-store';
 
 export const appConfig: ApplicationConfig = {
   providers: [
@@ -31,7 +30,9 @@ export const appConfig: ApplicationConfig = {
     provideEffects(TodoEffects, CategoryEffects),
     provideRouterStore(),
     // provideAnimations(),
-    provideHttpClient(withInterceptors([MockInterceptor])),
+    provideHttpClient(
+      // withInterceptors([MockInterceptor])
+    ),
     provideZoneChangeDetection({ eventCoalescing: true }),
     provideRouter(appRoutes),
     provideIonicAngular({

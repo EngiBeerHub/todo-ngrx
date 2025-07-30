@@ -1,10 +1,10 @@
-import { EntityState } from '@ngrx/entity';
+import {EntityState} from '@ngrx/entity';
 
 export interface CategoryDto {
   id: number | null;
   title: string;
   description: string | null;
-  showDoneTodos: boolean;
+  show_done_todos: boolean;
 }
 
 export interface CategoryModel {

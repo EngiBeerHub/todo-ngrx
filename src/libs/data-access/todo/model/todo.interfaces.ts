@@ -1,13 +1,13 @@
-import { EntityState } from '@ngrx/entity';
-import { CategoryModel } from './category.interfaces';
+import {EntityState} from '@ngrx/entity';
+import {CategoryModel} from './category.interfaces';
 
 export interface TodoDto {
   id: number | null;
-  categoryId: number | null;
+  category_id: number | null;
   title: string;
   description: string | null;
-  dueDate: string | null;
-  isDone: boolean;
+  due_date: string | null;
+  is_done: boolean;
 }
 
 export interface TodoModel {
