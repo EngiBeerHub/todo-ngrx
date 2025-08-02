@@ -25,6 +25,7 @@
     "@wdio/visual-service": "^9.0.0",
     "allure-commandline": "^2.34.1",
     "appium": "^2.19.0",
+    "appium-chromedriver": "^7.0.33",
     "appium-espresso-driver": "^4.1.15",
     "appium-uiautomator2-driver": "^4.2.7",
     "appium-xcuitest-driver": "^9.10.1",
