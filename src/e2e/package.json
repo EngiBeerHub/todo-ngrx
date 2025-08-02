@@ -23,6 +23,7 @@
     "@wdio/mocha-framework": "^9.18.0",
     "@wdio/spec-reporter": "^9.18.0",
     "@wdio/visual-service": "^9.0.0",
+    "allure-commandline": "^2.34.1",
     "appium": "^2.19.0",
     "appium-espresso-driver": "^4.1.15",
     "appium-uiautomator2-driver": "^4.2.7",
