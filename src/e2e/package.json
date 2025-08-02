@@ -15,6 +15,7 @@
     "appium": "^2.19.0",
     "appium-espresso-driver": "^4.1.15",
     "appium-uiautomator2-driver": "^4.2.7",
-    "appium-xcuitest-driver": "^9.10.1"
+    "appium-xcuitest-driver": "^9.10.1",
+    "webdriverio": "^9.18.4"
   }
 }
