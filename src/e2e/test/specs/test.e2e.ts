@@ -14,7 +14,7 @@ describe('TODO NgRx application', () => {
   });
 
   after(async () => {
-    await driver.pause(5000);
+    await driver.pause(3000);
   });
 
   it('should show loading when open', async () => {
@@ -22,7 +22,11 @@ describe('TODO NgRx application', () => {
   });
 
   it('should hide loading after a while', async () => {
-    await driver.pause(2000);
     expect(CategoryListPage.loading).not.toBeDisplayed();
+  });
+
+  it('should show title', async () => {
+    expect(CategoryListPage.title).toBeDisplayed();
+    expect(CategoryListPage.title).toHaveText('マイリスト');
   });
 });
