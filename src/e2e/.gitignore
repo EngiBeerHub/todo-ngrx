@@ -1,1 +1,4 @@
 /node_modules
+/allure*
+/.allure
+/test/specs/__snapshots__

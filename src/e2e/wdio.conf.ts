@@ -6,7 +6,7 @@ export const config: WebdriverIO.Config = {
     // WebdriverIO supports running e2e tests as well as unit and component tests.
     runner: 'local',
     tsConfigPath: './tsconfig.json',
-    
+
     port: 4723,
     //
     // ==================
@@ -56,8 +56,8 @@ export const config: WebdriverIO.Config = {
         // capabilities for local Appium web tests on iOS
         platformName: 'iOS',
         browserName: 'Safari',
-        'appium:deviceName': 'iPhone Simulator',
-        'appium:platformVersion': '16.4',
+        'appium:deviceName': 'iPhone 16',
+        'appium:platformVersion': '18.5',
         'appium:automationName': 'XCUITest'
     }],
 
@@ -117,7 +117,7 @@ export const config: WebdriverIO.Config = {
     // Make sure you have the wdio adapter package for the specific framework installed
     // before running any tests.
     framework: 'mocha',
-    
+
     //
     // The number of times to retry the entire specfile when it fails as a whole
     // specFileRetries: 1,
