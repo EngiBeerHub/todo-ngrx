@@ -1,5 +1,5 @@
-import { Component, input, model, output, signal } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import {Component, effect, input, model, output, signal, ViewChild} from '@angular/core';
+import {CommonModule} from '@angular/common';
 import {
   IonCheckbox,
   IonIcon,
@@ -9,13 +9,13 @@ import {
   IonItemOptions,
   IonItemSliding,
   IonLabel,
-  IonList,
+  IonList
 } from '@ionic/angular/standalone';
-import { addIcons } from 'ionicons';
-import { trash } from 'ionicons/icons';
-import { FormsModule } from '@angular/forms';
-import { sleep } from '../utils/sleep';
-import { CheckboxCustomEvent } from '@ionic/angular';
+import {addIcons} from 'ionicons';
+import {trash} from 'ionicons/icons';
+import {FormsModule} from '@angular/forms';
+import {sleep} from '../utils/sleep';
+import {CheckboxCustomEvent} from '@ionic/angular';
 import {TodoModel} from "../../../data-access/todo";
 
 @Component({
@@ -58,8 +58,23 @@ export class TodoListComponent {
   $editingTitle = model('');
   $editingTodo = signal<TodoModel | null>(null);
 
+  @ViewChild('editInput', {static: false}) editInput?: IonInput;
+  @ViewChild('draftInput', {static: false}) draftInput?: IonInput;
+
   constructor() {
     addIcons({ trash });
+
+    // $isDrafting() が true になったらフォーカス
+    effect(() => {
+      if (this.$isUpdating()) {
+        // 次のtickでfocus（表示が確定してから）
+        setTimeout(() => this.editInput?.setFocus(), 100);
+      }
+      if (this.$isDrafting()) {
+        // 次のtickでfocus（表示が確定してから）
+        setTimeout(() => this.draftInput?.setFocus(), 100);
+      }
+    });
   }
 
   onAddConfirmed() {

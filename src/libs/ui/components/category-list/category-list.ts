@@ -1,4 +1,4 @@
-import {Component, input, model, output} from '@angular/core';
+import {Component, effect, input, model, output, ViewChild} from '@angular/core';
 import {CommonModule} from '@angular/common';
 import {
   IonIcon,
@@ -28,7 +28,7 @@ import {CategoryModel} from "../../../data-access/todo";
     IonIcon,
     IonItemOption,
     IonInput,
-    FormsModule,
+    FormsModule
   ],
   template: `
     <ion-list [inset]="true">
@@ -55,7 +55,7 @@ import {CategoryModel} from "../../../data-access/todo";
         <ion-item-sliding>
           <ion-item>
             <ion-input
-              autofocus="true"
+              #draftInput
               [(ngModel)]="$newCategoryTitle"
               (ionBlur)="onAddConfirmed()"></ion-input>
           </ion-item>
@@ -64,7 +64,7 @@ import {CategoryModel} from "../../../data-access/todo";
     </ion-list>
 
   `,
-  styles: ``,
+  styles: ``
 })
 export class CategoryListComponent {
   // input
@@ -81,8 +81,18 @@ export class CategoryListComponent {
   // add draft value
   $newCategoryTitle = model('');
 
+  @ViewChild('draftInput', {static: false}) draftInput?: IonInput;
+
   constructor() {
-    addIcons({ trash });
+    addIcons({trash});
+
+    // $isDrafting() が true になったらフォーカス
+    effect(() => {
+      if (this.$isDrafting()) {
+        // 次のtickでfocus（表示が確定してから）
+        setTimeout(() => this.draftInput?.setFocus(), 100);
+      }
+    });
   }
 
   onCategorySelected(categoryId: number | null) {
@@ -94,7 +104,7 @@ export class CategoryListComponent {
       id: null,
       title: this.$newCategoryTitle(),
       description: null,
-      showDoneTodos: false,
+      showDoneTodos: false
     });
     this.resetLocalState();
   }

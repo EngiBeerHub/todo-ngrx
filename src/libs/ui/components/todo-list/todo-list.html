@@ -14,8 +14,8 @@
         @if ($editingTodoId() === todo.id) {
           <!-- update mode -->
           <ion-input
+            #editInput
             class="ion-no-padding"
-            autofocus="true"
             [(ngModel)]="$editingTitle"
             (ionBlur)="onEditConfirmed(todo)"
           >
@@ -46,8 +46,8 @@
       <ion-item>
         <ion-checkbox [(ngModel)]="$newTodoIsDone"></ion-checkbox>
         <ion-input
+          #draftInput
           class="ion-margin-start"
-          autofocus="true"
           [(ngModel)]="$newTodoTitle"
           (ionBlur)="onAddConfirmed()"></ion-input>
       </ion-item>

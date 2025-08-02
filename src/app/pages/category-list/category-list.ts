@@ -1,5 +1,5 @@
-import { Component, inject } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import {Component, inject} from '@angular/core';
+import {CommonModule} from '@angular/common';
 import {
   IonButton,
   IonButtons,
@@ -11,9 +11,9 @@ import {
   IonRefresher,
   IonRefresherContent,
   IonTitle,
-  IonToolbar,
+  IonToolbar
 } from '@ionic/angular/standalone';
-import { CategoryListStore } from './category-list-store';
+import {CategoryListStore} from './category-list-store';
 import {CategoryListComponent} from "../../../libs/ui/components";
 
 @Component({
@@ -45,9 +45,9 @@ import {CategoryListComponent} from "../../../libs/ui/components";
         <ion-title>マイリスト</ion-title>
 
         @if (store.isDrafting()) {
-        <ion-buttons slot="end">
-          <ion-button (click)="store.onCompleteClicked()">完了</ion-button>
-        </ion-buttons>
+          <ion-buttons slot="end">
+            <ion-button (click)="store.onCompleteClicked()">完了</ion-button>
+          </ion-buttons>
         }
       </ion-toolbar>
     </ion-header>
