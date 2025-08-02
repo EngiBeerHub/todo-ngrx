@@ -55,10 +55,11 @@ export const config: WebdriverIO.Config = {
     capabilities: [{
         // capabilities for local Appium web tests on iOS
         platformName: 'iOS',
-        browserName: 'Safari',
+        // browserName: 'Safari',
         'appium:deviceName': 'iPhone 16',
         'appium:platformVersion': '18.5',
-        'appium:automationName': 'XCUITest'
+        'appium:automationName': 'XCUITest',
+        'appium:bundleId': 'todo.ngrx'
     }],
 
     //
