@@ -1,32 +1,74 @@
 import {expect} from "@wdio/globals";
-import CategoryListPage from "../pageobjects/category-list.page.ts";
+import CategoryListPage from "../pageobjects/category-list.page";
+import {nativeTapWithRightOffset, swipeLeft, switchWebview} from "../utils";
 
-describe('TODO NgRx application', () => {
+describe('Category List Page', () => {
+
   before(async () => {
+    await driver.pause(2000);
     // Switch webview context
-    const webViewContext = (await driver.getContexts())
-      .find(c => typeof c === 'string' && c.includes('WEBVIEW'));
-    if (webViewContext) {
-      await driver.switchContext(webViewContext);
-    } else {
-      throw new Error('WebView context not found');
-    }
-  });
-
-  after(async () => {
-    await driver.pause(3000);
-  });
-
-  it('should show loading when open', async () => {
-    expect(CategoryListPage.loading).toBeDisplayed();
-  });
-
-  it('should hide loading after a while', async () => {
-    expect(CategoryListPage.loading).not.toBeDisplayed();
+    await switchWebview();
+    // wait for loading close
+    await driver.pause(2000);
   });
 
   it('should show title', async () => {
-    expect(CategoryListPage.title).toBeDisplayed();
-    expect(CategoryListPage.title).toHaveText('マイリスト');
+    await expect(CategoryListPage.title).toBeDisplayed();
+    await expect(CategoryListPage.title).toHaveText('マイリスト');
+  });
+
+  it('should show complete button when click new button', async () => {
+    await expect(CategoryListPage.newButton).toBeDisplayed();
+    // Act
+    await CategoryListPage.newButton.click();
+    // Assert
+    await expect(CategoryListPage.completeButton).toBeDisplayed();
+  });
+
+  it('should also show keyboard', async () => {
+    // ネイティブコンテキストに切り替え
+    await driver.switchContext('NATIVE_APP');
+    await driver.pause(2000);
+
+    // Assert
+    const kbVisible = await driver.isKeyboardShown();
+    await expect(kbVisible).toBe(true);
+
+    // WebViewコンテキストに戻す
+    await switchWebview();
+  });
+
+  it('should add task after type and complete', async () => {
+    // Arrange
+    await expect(CategoryListPage.input).toBeDisplayed();
+    // Act
+    await CategoryListPage.input.setValue('new category');
+    await CategoryListPage.completeButton.click();
+    // Assert
+    await expect(CategoryListPage.lastItemInList).toHaveText('new category');
+  });
+
+  it('should also hide keyboard', async () => {
+    // ネイティブコンテキストに切り替え
+    await driver.switchContext('NATIVE_APP');
+    await driver.pause(1000);
+    // Assert
+    const kbVisible = await driver.isKeyboardShown();
+    await expect(kbVisible).toBe(false);
+    // WebViewコンテキストに戻す
+    await switchWebview();
+  });
+
+  it('should delete item when tap option', async () => {
+    // Act - swipe
+    await swipeLeft(CategoryListPage.lastItemInList);
+    await driver.pause(1000);
+
+    // Act - tap
+    await nativeTapWithRightOffset(CategoryListPage.lastItemInList, 20);
+    await driver.pause(2000);
+
+    // Assert
+    await expect(CategoryListPage.lastItemInList).not.toHaveText('new category');
   });
 });

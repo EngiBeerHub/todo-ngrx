@@ -42,11 +42,11 @@ import {CategoryListComponent} from "../../../libs/ui/components";
     <ion-header [translucent]="true">
       <ion-toolbar>
         <!-- Title -->
-        <ion-title>マイリスト</ion-title>
+        <ion-title id="page-title">マイリスト</ion-title>
 
         @if (store.isDrafting()) {
           <ion-buttons slot="end">
-            <ion-button (click)="store.onCompleteClicked()">完了</ion-button>
+            <ion-button id="complete-button" (click)="store.onCompleteClicked()">完了</ion-button>
           </ion-buttons>
         }
       </ion-toolbar>
@@ -80,7 +80,7 @@ import {CategoryListComponent} from "../../../libs/ui/components";
     <ion-footer [translucent]="true" collapse="fade">
       <ion-toolbar>
         <ion-buttons slot="start">
-          <ion-button (click)="store.onIsDraftingToggled(true)">
+          <ion-button id="new-button" (click)="store.onIsDraftingToggled(true)">
             <ion-icon name="add-circle" style="margin-right: 8px"></ion-icon>
             新規
           </ion-button>

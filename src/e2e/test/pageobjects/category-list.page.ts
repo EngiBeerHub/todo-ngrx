@@ -1,12 +1,27 @@
-import {$} from "@wdio/globals";
-
 class CategoryListPage {
-  get loading() {
-    return $('ion-loading')
+  get title() {
+    return $('#page-title');
   }
 
-  get title() {
-    return $$('ion-title')[0]
+  get newButton() {
+    return $('#new-button');
+  }
+
+  get completeButton() {
+    return $('#complete-button');
+  }
+
+  get lastItemInList() {
+    return $('ion-list ion-item-sliding:last-of-type ion-item');
+  }
+
+  get deleteItemButton() {
+    return $('#delete-item-button');
+  }
+
+  get input() {
+    // ion-inputやidではアクセス不可
+    return $('input');
   }
 }
 

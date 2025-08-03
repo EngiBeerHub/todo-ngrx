@@ -8,7 +8,7 @@ import {map, Observable} from 'rxjs';
 })
 export abstract class GenericHttpService<T, S> {
   protected url;
-  private readonly apiKey = '[MY_API_KEY]';
+  private readonly apiKey = 'sb_publishable_I1cZwM3GcfCfdU3kO0VqSg_IldGl9Pp';
   defaultHeaders = new HttpHeaders()
     .set('apikey', this.apiKey)
     .append('Authorization', `Bearer ${this.apiKey}`)

@@ -39,12 +39,11 @@ import {CategoryModel} from "../../../data-access/todo";
           </ion-item>
 
           <ion-item-options slot="end">
-            <ion-item-option color="danger">
-              <ion-icon
-                slot="icon-only"
-                name="trash"
-                (click)="onCategoryDeleted(category, sliding)"
-              ></ion-icon>
+            <ion-item-option
+              id="delete-item-button"
+              color="danger"
+              (click)="onCategoryDeleted(category, sliding)">
+              <ion-icon slot="icon-only" name="trash"></ion-icon>
             </ion-item-option>
           </ion-item-options>
         </ion-item-sliding>
@@ -56,6 +55,7 @@ import {CategoryModel} from "../../../data-access/todo";
           <ion-item>
             <ion-input
               #draftInput
+              id="new-item-input"
               [(ngModel)]="$newCategoryTitle"
               (ionBlur)="onAddConfirmed()"></ion-input>
           </ion-item>

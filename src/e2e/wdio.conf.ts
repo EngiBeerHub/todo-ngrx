@@ -1,3 +1,24 @@
+const androidCaps = {
+  platformName: 'Android',
+  'appium:deviceName': 'Android Emulator',
+  'appium:automationName': 'UiAutomator2',
+  'appium:app': '/Users/ryosuke/dev/IonicProjects/todo-ngrx/android/app/build/outputs/apk/debug/app-debug.apk',
+  'appium:appActivity': 'todo.ngrx.MainActivity',
+};
+
+const iosCaps = {
+  platformName: 'iOS',
+  'appium:deviceName': 'iPhone 16',
+  'appium:platformVersion': '18.5',
+  'appium:automationName': 'XCUITest',
+  'appium:bundleId': 'todo.ngrx',
+  // 実機だと以下も必要
+  // 'appium:deviceName': 'Ryosuke\'s iPhone15',
+  // 'appium:udid': '00008120-001A10483C42201E',
+  // 'appium:xcodeOrgId': '4S4388AJ99',
+  // 'appium:xcodeSigningId': 'Apple Development',
+};
+
 export const config: WebdriverIO.Config = {
   //
   // ====================
@@ -63,16 +84,9 @@ export const config: WebdriverIO.Config = {
   //     'appium:bundleId': 'todo.ngrx'
   // }],
 
-  capabilities: [{
-    // capabilities for local Appium web tests on Android
-    platformName: 'Android',
-    // browserName: 'Safari',
-    'appium:deviceName': 'Android Emulator',
-    // 'appium:platformVersion': '16.0',
-    'appium:automationName': 'UiAutomator2',
-    'appium:app': '/Users/ryosuke/dev/IonicProjects/todo-ngrx/android/app/build/outputs/apk/debug/app-debug.apk',
-    'appium:appActivity': 'todo.ngrx.MainActivity'
-  }],
+  capabilities: [
+    process.env.PLATFORM === 'ios' ? iosCaps : androidCaps
+  ],
 
   //
   // ===================
