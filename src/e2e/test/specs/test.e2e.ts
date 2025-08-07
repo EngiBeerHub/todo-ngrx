@@ -5,11 +5,11 @@ import {nativeTapWithRightOffset, swipeLeft, switchWebview} from "../utils";
 describe('Category List Page', () => {
 
   before(async () => {
-    await driver.pause(2000);
+    await browser.pause(2000);
     // Switch webview context
     await switchWebview();
     // wait for loading close
-    await driver.pause(2000);
+    await browser.pause(2000);
   });
 
   it('should show title', async () => {
@@ -27,11 +27,11 @@ describe('Category List Page', () => {
 
   it('should also show keyboard', async () => {
     // ネイティブコンテキストに切り替え
-    await driver.switchContext('NATIVE_APP');
-    await driver.pause(2000);
+    await browser.switchContext('NATIVE_APP');
+    await browser.pause(2000);
 
     // Assert
-    const kbVisible = await driver.isKeyboardShown();
+    const kbVisible = await browser.isKeyboardShown();
     await expect(kbVisible).toBe(true);
 
     // WebViewコンテキストに戻す
@@ -50,10 +50,10 @@ describe('Category List Page', () => {
 
   it('should also hide keyboard', async () => {
     // ネイティブコンテキストに切り替え
-    await driver.switchContext('NATIVE_APP');
-    await driver.pause(1000);
+    await browser.switchContext('NATIVE_APP');
+    await browser.pause(1000);
     // Assert
-    const kbVisible = await driver.isKeyboardShown();
+    const kbVisible = await browser.isKeyboardShown();
     await expect(kbVisible).toBe(false);
     // WebViewコンテキストに戻す
     await switchWebview();
@@ -62,11 +62,11 @@ describe('Category List Page', () => {
   it('should delete item when tap option', async () => {
     // Act - swipe
     await swipeLeft(CategoryListPage.lastItemInList);
-    await driver.pause(1000);
+    await browser.pause(1000);
 
     // Act - tap
     await nativeTapWithRightOffset(CategoryListPage.lastItemInList, 20);
-    await driver.pause(2000);
+    await browser.pause(2000);
 
     // Assert
     await expect(CategoryListPage.lastItemInList).not.toHaveText('new category');
