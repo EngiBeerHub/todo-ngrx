@@ -3,7 +3,7 @@ const androidCaps = {
   'appium:deviceName': 'Android Emulator',
   'appium:automationName': 'UiAutomator2',
   'appium:app': '/Users/ryosuke/dev/IonicProjects/todo-ngrx/android/app/build/outputs/apk/debug/app-debug.apk',
-  'appium:appActivity': 'todo.ngrx.MainActivity',
+  'appium:appActivity': 'todo.ngrx.MainActivity'
 };
 
 const iosCaps = {
@@ -11,7 +11,7 @@ const iosCaps = {
   'appium:deviceName': 'iPhone 16',
   'appium:platformVersion': '18.5',
   'appium:automationName': 'XCUITest',
-  'appium:bundleId': 'todo.ngrx',
+  'appium:bundleId': 'todo.ngrx'
   // 実機だと以下も必要
   // 'appium:deviceName': 'Ryosuke\'s iPhone15',
   // 'appium:udid': '00008120-001A10483C42201E',
@@ -165,7 +165,14 @@ export const config: WebdriverIO.Config = {
   // Test reporter for stdout.
   // The only one supported by default is 'dot'
   // see also: https://webdriver.io/docs/dot-reporter
-  reporters: ['spec', ['allure', {outputDir: 'allure-results'}]],
+  reporters: [
+    'spec',
+    ['allure', {
+      outputDir: 'allure-results',
+      disableWebdriverStepsReporting: true,
+      disableWebdriverScreenshotsReporting: false
+    }]
+  ],
 
   // Options to be passed to Mocha.
   // See the full list at http://mochajs.org/
@@ -269,9 +276,7 @@ export const config: WebdriverIO.Config = {
    * @param {object}  result.retries   information about spec related retries, e.g. `{ attempts: 0, limit: 0 }`
    */
   afterTest: async function (test, context, {error, result, duration, passed, retries}) {
-    if (!passed) {
-      await browser.takeScreenshot();
-    }
+    await browser.takeScreenshot();
   }
 
 
