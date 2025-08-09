@@ -1,5 +1,5 @@
-import { Component, inject } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import {ChangeDetectionStrategy, Component, inject} from '@angular/core';
+import {CommonModule} from '@angular/common';
 
 import {
   IonBackButton,
@@ -14,9 +14,9 @@ import {
   IonRefresher,
   IonRefresherContent,
   IonTitle,
-  IonToolbar,
+  IonToolbar
 } from '@ionic/angular/standalone';
-import { TodoListStore } from './todo-list-store';
+import {TodoListStore} from './todo-list-store';
 import {TodoListComponent, TodolistMenuContent} from "../../../libs/ui/components";
 
 @Component({
@@ -39,6 +39,7 @@ import {TodoListComponent, TodolistMenuContent} from "../../../libs/ui/component
     TodolistMenuContent,
   ],
   providers: [TodoListStore],
+  changeDetection: ChangeDetectionStrategy.OnPush,
   template: `
     <!-- Loading -->
     <ion-loading [isOpen]="store.$showLoading()"></ion-loading>

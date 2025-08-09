@@ -1,4 +1,4 @@
-import {Component, inject} from '@angular/core';
+import {ChangeDetectionStrategy, Component, inject} from '@angular/core';
 import {CommonModule} from '@angular/common';
 import {
   IonButton,
@@ -33,6 +33,7 @@ import {CategoryListComponent} from "../../../libs/ui/components";
     IonRefresherContent,
     CategoryListComponent,
   ],
+  changeDetection: ChangeDetectionStrategy.OnPush,
   providers: [CategoryListStore],
   template: `
     <!-- Loading -->

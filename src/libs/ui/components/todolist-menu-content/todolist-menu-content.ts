@@ -1,18 +1,13 @@
-import { Component, input, output } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import {
-  IonContent,
-  IonIcon,
-  IonItem,
-  IonLabel,
-  IonList,
-} from '@ionic/angular/standalone';
-import { eyeOffOutline, eyeOutline, trashOutline } from 'ionicons/icons';
-import { addIcons } from 'ionicons';
+import {ChangeDetectionStrategy, Component, input, output} from '@angular/core';
+import {CommonModule} from '@angular/common';
+import {IonContent, IonIcon, IonItem, IonLabel, IonList} from '@ionic/angular/standalone';
+import {eyeOffOutline, eyeOutline, trashOutline} from 'ionicons/icons';
+import {addIcons} from 'ionicons';
 
 @Component({
   selector: 'lib-todo-list-menu-content',
   imports: [CommonModule, IonContent, IonIcon, IonItem, IonLabel, IonList],
+  changeDetection: ChangeDetectionStrategy.OnPush,
   template: `
     <ion-content>
       <ion-list lines="full">

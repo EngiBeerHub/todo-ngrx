@@ -1,4 +1,4 @@
-import {Component, effect, input, model, output, ViewChild} from '@angular/core';
+import {ChangeDetectionStrategy, Component, effect, input, model, output, ViewChild} from '@angular/core';
 import {CommonModule} from '@angular/common';
 import {
   IonIcon,
@@ -30,6 +30,7 @@ import {CategoryModel} from "../../../data-access/todo";
     IonInput,
     FormsModule
   ],
+  changeDetection: ChangeDetectionStrategy.OnPush,
   template: `
     <ion-list [inset]="true">
       @for (category of $categories(); track category.id) {

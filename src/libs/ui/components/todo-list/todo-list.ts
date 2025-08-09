@@ -1,4 +1,4 @@
-import {Component, effect, input, model, output, signal, ViewChild} from '@angular/core';
+import {ChangeDetectionStrategy, Component, effect, input, model, output, signal, ViewChild} from '@angular/core';
 import {CommonModule} from '@angular/common';
 import {
   IonCheckbox,
@@ -33,6 +33,7 @@ import {TodoModel} from "../../../data-access/todo";
     FormsModule,
     IonLabel,
   ],
+  changeDetection: ChangeDetectionStrategy.OnPush,
   templateUrl: './todo-list.html',
   styles: ``,
 })
